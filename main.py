@@ -64,7 +64,7 @@ def get_id(username):
 
 
 
-api = InstagramAPI("enjieldeeb@yahoo.com", "ahmedahmed")
+api = InstagramAPI("xxx@yahoo.com", "ahmedahmed")
 api.login()
 own_id = api.username_id
 followers = api.getTotalFollowers(str(own_id))
@@ -155,7 +155,7 @@ with sqlite3.connect(DB_NAME) as conn:
 
 
 """
-api = InstagramAPI("enjieldeeb@yahoo.com", "ahmedahmed")
+api = InstagramAPI("xxx@yahoo.com", "ahmedahmed")
 api.login()
 
 own_id = api.username_id
