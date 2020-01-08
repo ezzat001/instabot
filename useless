@@ -1,0 +1,38 @@
+import requests
+import time
+import sqlite3
+from InstagramAPI import InstagramAPI
+
+USER_NAME = "yahoo@yahoo.com"
+USER_PASS = "yahoo"
+
+
+def get_id(username):
+	url = "https://www.instagram.com/web/search/topsearch/?context=blended&query="+username+"&rank_token=0.3953592318270893&count=1"
+	response = requests.get(url)
+	respJSON = response.json()
+	try:
+		user_id = str( respJSON['users'][0].get("user").get("pk") )
+		return user_id
+	except:
+		return 'Unexpected error has occured while retrieving the primary key [get_id]'
+#client = Client(fku, fkp)
+#if not client.isLoggedIn():
+    #client.login(fku,fkp)
+if __name__ == "__main__":
+    api = InstagramAPI(USER_NAME, USER_PASS)
+    api.login()
+
+    # user_id = '1461295173'
+    user_id = api.username_id
+    followers = api.getTotalFollowers(user_id)
+    x = open("ids",'w')
+    for i in followers:
+        x.write(str(i['pk'])+'\n')
+    api.direct_message("zepy",get_id("ahmedezzatpy"))
+"""
+    for follower in followers:
+        api.block(follower)
+    api.block(ezzat)
+    print("Blocked:",ezzat)
+    print(followers[0]['pk'])"""
